@@ -1,8 +1,11 @@
 	CREATE TABLE USUARIO (
 		ID_USUARIO SERIAL PRIMARY KEY,
+        CPF VARCHAR(11) NOT NULL,
 		NOME VARCHAR(50) NOT NULL,
 		DT_NASC DATE NOT NULL,
-		EMAIL VARCHAR(50) NOT NULL
+		EMAIL VARCHAR(50) NOT NULL,
+        ENDERECO VARCHAR(100) NOT NULL,
+        TELEFONE VARCHAR(11) NOT NULL
 	);
 
 	CREATE TABLE CLASSE (
@@ -83,30 +86,4 @@
 		CONSTRAINT FK_VOO FOREIGN KEY(ID_VOO) REFERENCES VOO(ID_VOO),
 		CONSTRAINT FK_PASSAGEM FOREIGN KEY(ID_PASSAGEM) REFERENCES PASSAGEM(ID_PASSAGEM),
 		CONSTRAINT FK_AAC FOREIGN KEY(ID_AVIAO_ASSENTO_CLASSE) REFERENCES AVIAO_ASSENTO_CLASSE(ID_AVIAO_ASSENTO_CLASSE)
-	);
-
-	CREATE OR REPLACE FUNCTION cadastrar_dados(
-		tabela_nome VARCHAR,  -- Nome da tabela onde os dados serão inseridos
-		colunas TEXT,         -- Lista de colunas onde os dados serão inseridos (ex: 'coluna1, coluna2')
-		valores TEXT          -- Lista de valores a serem inseridos (ex: '''valor1'', ''valor2''')
-	) 
-	RETURNS VOID 
-	AS $$
-	DECLARE
-		sql_query TEXT;
-	BEGIN
-		-- Construir o comando SQL dinâmico
-		sql_query := FORMAT('INSERT INTO %I (%s) VALUES (%s)', tabela_nome, colunas, valores);
-
-		-- Executar o comando SQL dinâmico
-		EXECUTE sql_query;
-	END;
-	$$
-	LANGUAGE plpgsql;
-
-
-	SELECT cadastrar_dados(
-		'USUARIO',                     -- Nome da tabela
-		'NOME, DT_NASC, EMAIL',        -- Colunas onde os dados serão inseridos
-		'''João Silva'', ''1990-05-15'', ''joao.silva@example.com'''  -- Valores a serem inseridos
 	);
