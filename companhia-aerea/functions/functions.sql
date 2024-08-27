@@ -183,6 +183,29 @@
         SELECT a.ID_ASSENTO, c.NOME AS NOME_CLASSE
         FROM AVIAO_ASSENTO_CLASSE_VOO a
         JOIN CLASSE c ON a.ID_CLASSE = c.ID_CLASSE
-        WHERE a.ID_VOO = _ID_VOO AND a.STATUS = 'FALSE';
+        WHERE a.ID_VOO = _ID_VOO AND a.STATUS = FALSE;
     END
     $$ LANGUAGE plpgsql;
+
+    /* 
+    FUNÇÃO PARA CALCULAR VALOR DO TRAJETO 
+    Essa função se baseia em verificar em qual intervalo de km a distância do trajeto está enquadrada e multiplicar
+    essa distância pelo valor cobrado por km de acordo com a tabelo CUSTO_KM 
+    */
+
+    /*
+    FUNÇÃO PARA CALCULAR O VALOR DA RESERVA
+    O valor da reserva é a soma do custo total da distância e valor fixo cobrado pela classe.
+    */
+
+    /*
+    FUNÇÃO PARA CANCELAR RESERVA
+    Essa função deve excluir a linha correspondente ao id passado como parâmetro da tabela RESERVA e todas as linhas da tabela ITEM_PASSAGEM
+    que fazem referência a esse id.
+    */
+
+    /*
+    FUNÇÃO PARA CANCELAR VOO
+    Essa função deve excluir a linha correspondente ao id passado como parâmetro da tabela VOO e todas as linhas da tabela AVIAO_ASSENTO_CLASSE_VOO
+    que fazem referência a esse id.
+    */
