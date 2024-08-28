@@ -199,13 +199,21 @@
     */
 
     /*
-    FUNÇÃO PARA CANCELAR RESERVA
-    Essa função deve excluir a linha correspondente ao id passado como parâmetro da tabela RESERVA e todas as linhas da tabela ITEM_PASSAGEM
-    que fazem referência a esse id.
-    */
+    FUNÇÃO PARA CANCELAR RESERVA*/
+    CREATE OR REPLACE FUNCTION CANCELAR_RESERVA(_ID_RESERVA INT) RETURNS VOID AS $$
+        BEGIN
+            PERFORM PRIVATE_VERIFICAR_EXISTENCIA_RESERVA(_ID_RESERVA);
 
+            DELETE FROM ITEM_RESERVA WHERE ID_RESERVA = _ID_RESERVA;
+            DELETE FROM RESERVA WHERE ID_RESERVA = _ID_RESERVA;
+            RAISE NOTICE 'RESERVA CANCELADA COM SUCESSO!';
+        END;
+    $$ LANGUAGE 'plpgsql';
+    
     /*
     FUNÇÃO PARA CANCELAR VOO
     Essa função deve excluir a linha correspondente ao id passado como parâmetro da tabela VOO e todas as linhas da tabela AVIAO_ASSENTO_CLASSE_VOO
     que fazem referência a esse id.
     */
+
+    
