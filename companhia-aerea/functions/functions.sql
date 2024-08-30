@@ -211,9 +211,11 @@
     $$ LANGUAGE 'plpgsql';
     
     /*
-    FUNÇÃO PARA CANCELAR VOO
+    FUNÇÃO PARA CANCELAR VOO -> Função deve ser genérica, ou seja, deverá funcionar para o cancelamento de um voo, como também de uma reserva.
     Essa função deve excluir a linha correspondente ao id passado como parâmetro da tabela VOO e todas as linhas da tabela AVIAO_ASSENTO_CLASSE_VOO
-    que fazem referência a esse id.
+    que fazem referência a esse id, se existir.
     */
+
+    
 
     
