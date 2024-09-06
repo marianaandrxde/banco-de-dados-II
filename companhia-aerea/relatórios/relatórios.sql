@@ -1,3 +1,25 @@
+/*
+ =========================================
+ ||                                     ||
+ ||    Função para Verificar Assentos   ||
+ ||       Disponíveis em um Voo         ||
+ =========================================
+ */
+CREATE
+OR REPLACE FUNCTION VERIFICAR_ASSENTOS_DISPONIVEIS(_ID_VOO INT) RETURNS TABLE (ID_ASSENTO INT, NOME_CLASSE VARCHAR) AS $ $ BEGIN RETURN QUERY
+SELECT
+    a.ID_ASSENTO,
+    c.NOME AS NOME_CLASSE
+FROM
+    AVIAO_ASSENTO_CLASSE_VOO a
+    JOIN CLASSE c ON a.ID_CLASSE = c.ID_CLASSE
+WHERE
+    a.ID_VOO = _ID_VOO
+    AND a.STATUS = FALSE;
+
+END $ $ LANGUAGE plpgsql;
+
+ 
     /*
     VERIFICAR PASSAGEIROS INCLUSOS NO VOO N°121
     */
@@ -8,10 +30,6 @@
 
     /*
     VERIFICAR PASSAGENS POR RESERVA
-    */
-
-    /*
-    VERIFICAR RESERVAS POR FUNCIONÁRIO
     */
 
     /*
@@ -28,10 +46,6 @@
 
     /*
     MOSTRAR TODOS OS VOOS POR DETERMINADA DATA COM SEUS HORÁRIOS
-    */
-
-    /*
-    RESERVAS POR MÉTODO DE PAGAMENTO
     */
 
     /*EXIBIR INFORMAÇÕES SOBRE VOOS E SEUS TRAJETOS
