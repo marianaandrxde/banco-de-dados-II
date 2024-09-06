@@ -1,0 +1,11 @@
+1 - Verificar se um trajeto está com status true antes de associar um voo a ele
+2 - Bloquear atualização do valor de um item reserva. E se a pessoa quiser alterar a classe? Provavelmente, não deve ser bloqueado.
+3 - Função para desativar um trajeto
+4 - Função para excluir uma linha da tabela CUSTO_KM somente se não tiver nenhum voo com data maior ou igual a data atual 
+(Para isso, deve verificar na tabela Trajeto, quais as linhas referenciam o id de custo a remover. Depois, verificar na tabela voo, quais os IDs de voo referenciam os IDs de trajeto com 
+o ID de custo a ser removido)
+5 - Trigger para bloquear atualizacao do valor do ITEM_RESERVA. Poderá alterar apenas CPF_PASSAGEIRO e NOME. ATUALIZAR VALOR SOMENTE SE O VOO E/OU ASSENTO FOREM ALTERADOS.
+6 - Função para verificar assentos disponíveis por voo e classe.
+7 - Função para consultar o valor de uma passagem para um determinado voo e classe.
+8 - Verificar antes de realizar o insert na tabela ITEM_RESERVA se o id_voo é igual ao id_voo associado ao assento reservado. Impossibilitar que um passageiro reserve um assento de um voo diferente
+do especificado na passagem.
